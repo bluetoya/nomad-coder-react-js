@@ -8,40 +8,30 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root")
-        const Title = () => ( // arrow function, function-return과 같은 개념
-            <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-                Hello I am a title
-            </h3>
-        )
-            // old way
-        // const h3 = React.createElement(
-        //     "h3", {
-        //         id: "title",
-        //         onMouseEnter: () => console.log("mouse enter")
-        //     }, 
-        //     "Hello, I am a span")
-        const Button = () => ( 
-            <button style={{backgroundColor: "tomato"}} onClick={() => console.log("I am clicked")}>
-                Click me!!!
-            </button>
-        )
-        // old way
-        // const btn = React.createElement("button", {
-        //     onClick: () => console.log("I am clicked")
-        // }, "Click me")
-
-        // function을 불러오려면 태그처럼 < /> 로 불러오면 됨
-        // component는 모두 uppercase로 놓아야 함. 안 그러면 렌더링 시 html 태그로 오인할 수 있음
-        const Container = () => (
-            <div>
-                <Title />
-                <Button />
-            </div>
-        )
-        // const container = React.createElement("div", null, [Title, Button])
-        ReactDOM.render(<Container />, root)
+        function App() {
+            const [minutes, setMinutes] = React.useState(0)
+            const onChange = (event) => {
+                // console.log(event) // event
+                // console.log(event.target.value)
+                setMinutes(event.target.value)
+            }
+            return (
+                <div>
+                    <h1 className="hi">Super Converter</h1>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input
+                        value={minutes}
+                        id="minutes" 
+                        placeholder="Minutes" 
+                        type="number" 
+                        onChange={onChange}
+                    />
+                    <h4>You want to convert {minutes}</h4>
+                    <label htmlFor="hours">Hours</label>
+                    <input id="minutes" placeholder="Hours" type="number" />
+                </div>
+            )
+        }
+        ReactDOM.render(<App />, root)
     </script>
 </html>
-
-<!-- ## JSX - syntax extension of javascript
-## HTML과 비슷한 형태로 생겨서 프론트 개발자가 쓰기 편함 -->

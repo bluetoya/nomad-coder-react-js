@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const root = document.getElementById("root")
+        let counter = 0
+        function countUp() {
+            counter = counter + 1
+           render()
+        }
+        function render() {
+            ReactDOM.render(<Container />, root) // need to re-render when the button is clicked
+        }
+        const App = () => (
+            <div>
+                <h3>Total clicks: {counter}</h3>
+                <button onClick={countUp}>Click me!!!</button>
+            </div>
+        )
+        ReactDOM.render(<App />, root) // run immediately when loaded
+        // html은 변화가 생길 때마다 모든 태그가 다시 로드 되지만 react는 렌더링 때 바뀐 부분만 확인해서 렌더링 해준다 <- interactive
+    </script>
+</html>
