@@ -11,11 +11,16 @@
     crossorigin
     src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
   ></script>
-  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     // function Btn(props) {
-    function Btn({ text, fontSize }) {
+    function Btn({ text }) {
+      // props를 직접 넣는 대신, 중괄호 { }에 넘길 값을 지정해도 된다
+      // 넘겨지는 argument 명은 동일해야 한다
+
+      // can only accept props, first and only argument in react function
+      // <Btn banana="Save Changes" cherry={false} watermelon={7} />
+      //   console.log(text, big); // {banana: 'Save Changes', cherry: false, watermelon: 7}
       return (
         <button
           style={{
@@ -24,22 +29,20 @@
             padding: '10px 20px',
             border: 0,
             borderRadius: 10,
-            fontSize: fontSize,
           }}
         >
           {text}
         </button>
       );
     }
-    Btn.propTypes = {
-      text: PropTypes.string.isRequired,
-      fontSize: PropTypes.number.isRequired,
-    };
+    function ConfirmBtn() {
+      return <button>Confirm</button>;
+    }
     function App() {
       return (
         <div>
-          <Btn text="Save Changes" fontSize={18} />
-          <Btn text={14} fontSize={'Continue'} />
+          <Btn text="Save Changes" />
+          <Btn text="Confirm" />
         </div>
       );
     }
