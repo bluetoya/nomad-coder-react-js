@@ -1,35 +1,24 @@
-import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom"
+import Detail from "./routes/Detail";
+import Home from "./routes/Home";
 
 function App() {
-  const [toDo, setToDo] = useState("");
-  const [toDos, setToDos] = useState([]);
-  const onChange = (event) => {
-    setToDo(event.target.value);
-  }
-  const onSubmit = (event) => { // without onSubmit, button within form will empty the input
-    event.preventDefault()
-    if (toDo === "") {
-      return;
-    }
-    // cannot directly modify the state, so need to use "function" to modify the state
-    // in order to add, need to create new array and fill in values there
-    setToDos((currentArray) => [toDo, ...currentArray])
-    setToDo("")
-    console.log(toDos)
-  }
   return (
-    <div>
-      <h1>My ToDos</h1>
-      <form onSubmit={onSubmit}>
-        <input
-          onChange={onChange}
-          value={toDo}
-          type="text" 
-          placeholder="Write your to do..." />
-        <button>Add To Do</button>
-      </form>
-    </div>
-  );
+    <Router>
+      <Switch>
+        <Route path="/movie/:id">
+          <Detail />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
+  )
 }
 
 export default App;
